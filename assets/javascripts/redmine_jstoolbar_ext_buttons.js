@@ -1,8 +1,6 @@
 (function () {
   if(typeof RedmineWikiToolbarExt === 'undefined') return false;
 
-  var web_root = RedmineWikiToolbarExt.Paths.web_root();
-
   var buttons = [
     // Horizontal Rule
     {
