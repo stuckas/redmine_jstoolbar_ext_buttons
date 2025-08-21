@@ -37,7 +37,7 @@
       
       // Get current position
 		  const pos = textarea.selectionStart;
-		  const text = textarea.val();
+		  const text = textarea.value;
 			var n = null;
 
 		  // rotate the checkbox chars
