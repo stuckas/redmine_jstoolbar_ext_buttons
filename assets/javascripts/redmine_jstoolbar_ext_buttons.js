@@ -63,36 +63,33 @@
   */
   ];
 
-  // Checkbox rotation logic
-  arr = document.getElementsByClassName("wiki-edit");
-	
-	for (var i=0;i<arr.length;i++) {
-
-		const textarea = arr[i];
-		textarea.addEventListener("click", function () {
-		  // Get caret position
+  // logic to rotate the checkbox chars
+  $(document).ready(function(){
+    $('#content').on('click', 'div.jstEditor textarea.wiki-edit', function(event){
+      var textarea = event.currentTarget;
+      
+      // Get current position
 		  const pos = textarea.selectionStart;
-		  const text = textarea.value;
-			  var n = null;
-
+		  const text = textarea.val();
+			var n = null;
 
 		  // rotate the checkbox chars
 		  if (text[pos] == '☐') {
-					n = '✅';
-			  } else if (text[pos] == '✅') {
-					n = '❌';
+				n = '✅';
+			} else if (text[pos] == '✅') {
+				n = '❌';
 		  } else if (text[pos] == '❌') {
-					n = '☐';
-			  }
+				n = '☐';
+			}
 
-			  if (n != null) {
-				textarea.value = text.slice(0, pos) + n + text.slice(pos+1);;
-				// reset cursor
-				textarea.selectionStart = pos;
-				textarea.selectionEnd = pos;
-			  }
-		});
-	}
+      if (n != null) {
+        textarea.value = text.slice(0, pos) + n + text.slice(pos+1);;
+        // reset cursor
+        textarea.selectionStart = pos+2;
+        textarea.selectionEnd = pos+2;
+      }
+    });
+  });
 
   /**
    * Draw to page
