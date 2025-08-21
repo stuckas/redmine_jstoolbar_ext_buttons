@@ -19,6 +19,14 @@
       fn: { wiki: function () {
         this.encloseLineSelection('{{collapse(View details...)\n', '\n}}')
       }}
+    },
+  
+    // Checkbox
+    {
+      title: 'Checkbox', after: 'ol',
+      fn: { wiki: function () {
+        this.encloseLineSelection('☐ ', '')
+      }}
     } /*,
   
     // Ruby
@@ -54,6 +62,37 @@
     }
   */
   ];
+
+  // Checkbox rotation logic
+  arr = document.getElementsByClassName("wiki-edit");
+	
+	for (var i=0;i<arr.length;i++) {
+
+		const textarea = arr[i];
+		textarea.addEventListener("click", function () {
+		  // Get caret position
+		  const pos = textarea.selectionStart;
+		  const text = textarea.value;
+			  var n = null;
+
+
+		  // rotate the checkbox chars
+		  if (text[pos] == '☐') {
+					n = '✅';
+			  } else if (text[pos] == '✅') {
+					n = '❌';
+		  } else if (text[pos] == '❌') {
+					n = '☐';
+			  }
+
+			  if (n != null) {
+				textarea.value = text.slice(0, pos) + n + text.slice(pos+1);;
+				// reset cursor
+				textarea.selectionStart = pos;
+				textarea.selectionEnd = pos;
+			  }
+		});
+	}
 
   /**
    * Draw to page
